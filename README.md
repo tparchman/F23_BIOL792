@@ -6,7 +6,7 @@
 Fall 2023   
 BIOL 792 - 1028   
 **Prof**: Dr. Thomas Parchman; SFB 209; tparchman@unr.edu   
-Class: Tuesday/Thursday 6:00 – 7:10 pm OB 202  
+Class: Tuesday/Thursday 6:00 – 7:10 pm FH 106  
 Office Hours: By appointment    
 
 
