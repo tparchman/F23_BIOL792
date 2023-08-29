@@ -19,15 +19,15 @@ Text that is meant to serve as an example for what to type into a terminal windo
 
 Unix or Python commands, functions, or variables will also be designated in similar font when written. For example, `man`, `pwd` and `wc` are among the first Unix commands we will learn.
 
-For the first section of the course, we will have weekly Unix worksheets or assignments where we ask that you track your code and/or solutions to problems posed. In order to mark each spot in an assignment where you have to come up with your own code, we will leave a blank command line prompt as below.
+For the first section of the course, we will have weekly Unix worksheets or assignments where we ask that you track your code and/or solutions to problems posed. In order to mark each spot in an assignment where you have to come up with your own code, I will leave a blank command line prompt as below.
 
     $ 
 
 ## 2. Where can you run Unix?
 
-If you have an apple computer, you already own a unix machine. Just go into the Utilities directory, within the Application directory, and you will find the Terminal app. I suggest dragging that to your dock or wherever you organize applications you use frequently. For this class, having an apple computer will be the easiest way forward as your computer is ready to go and the examples in the book are written as they appear in this environment. 
+If you have an apple computer, you already own a unix machine. Just go into the Utilities directory, within the Application directory, and you will find the Terminal app. I suggest dragging that to your dock or wherever you organize applications you use frequently. 
 
-If you use a windows computer, a bit of adjustment will be necessary, but you have several options. You can Install Cygwin — this provides a Linux-like environment on your PC. Alternatively, and preferably, you can  install ubuntu linux alongside or within your windows operating system. **Appendix 1** of Haddock and Dunn explains in general detail how to install ubuntu linux on an windows operating system using a virtual machine. Here are a few resources for installing Ubuntu:
+If you use a windows computer, a bit of adjustment will be necessary, but you have several options. You can Install Cygwin — this provides a Linux-like environment on your PC (but this is less than ideal). Alternatively, and preferably, you can  install ubuntu linux alongside or within your windows operating system. **Appendix 1** of Haddock and Dunn explains in general detail how to install ubuntu linux on an windows operating system using a virtual machine. Here are a few resources for installing Ubuntu:
 
 - [install ubuntu desktop](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview)
 
