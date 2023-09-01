@@ -191,7 +191,7 @@ For this course, downloading individual files might suffice. But if you would li
 **hint:** make a directory somewhere on your computer for this course. Run below command in that directory.
 
 ```
-git clone https://github.com/tparchman/F22_BIOL792_coursepage
+git clone https://github.com/tparchman/F23_BIOL792_coursepage
 ```
 
 **note:** I will be updating the course on a near weekly basis. Thus, you will likely want to update this directory using additional `git` commands
