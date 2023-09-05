@@ -8,6 +8,7 @@
 - compression, decompression
 - more Unix commands, redirection
 - process monitoring
+- package installation
 - introduction to `grep`
 
 - **In book, last 5 pages of chapter 4; chapter 5.**
@@ -67,7 +68,7 @@ When you do this, it will only work from within a single terminal session. Once 
 
 - If you are running Ubuntu Linux, check which terminal application you are using and consult google.
 
-I'd suggest the following alias's, or atleast this is similar to what I use:
+I'd suggest the following alias list, or atleast this is similar to what I use:
 
     # helpful alias collection
     alias python='python3'
@@ -93,20 +94,31 @@ Note the above option will show just files that begin with `.`. If you wanted to
 
     $ ls -a
 
-If you do not have `.zshrc`, `.bashrc`, `.bash_profile` or `.profile`, make one and open:
+If you do not have `.zshrc`, `.bashrc`, `.bash_profile` or `.profile`, make one and open as below. Note, that depending on your system the name of the file will need to be one of the above.
 
-    $ touch .bash_profile
-    $ open .bash_profile
+    $ touch .zshrc
+    $ open .zshrc
 
-Copy and paste the alias settings ("helpful alias settings") above into .bash_profile, and save. Then, 
+Copy and paste the alias settings ("helpful alias settings") above into .zshrc, and save. Then, 
 
-    $ source .bash_profile
+    $ source .zshrc
 
 Once you quit and restart your terminal app, your new alias settings should be working, but test this out to be sure. Make a test.txt file, and use `rm` to remove it. If things are correct, you should be prompted by the terminal with "remove test.txt?". Type Y to remove, N to leave alone. Note, these settings will protect from terrible very bad accidents.
 
 Haddock and Dunn (page 87) present an additional/aternative safety approach to prevent overwriting or accidentally deleting, by adding the below to .bash_profile:
 
     set -o noclobber
+
+### `oh my zsh`: an open source, community-driven framework for managing your zsh configuration.
+
+The `zsh` terminal featured on apple and some linux operating systems is an upgrade to bash due to its high level of customization. If you would like to explore such customization, I suggest trying `oh my zsh`.
+
+You can find all necessary support and learn more about it [here](https://github.com/ohmyzsh/ohmyzsh).
+
+Installing is super easy, just copy the below into your terminal.
+
+    $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 
 ## 3. Text viewing *OR* text editing within the terminal
 
@@ -119,7 +131,7 @@ As `man` pages are by default viewed with `less`, look at the man page for `less
     $ man less
 
 You will use `less` regularly, a few tips:
-- `q` quits
+- `q` quits and renews the active terminal prompt
 - `spacebar` moves one page forward
 - `b` moves one page back
 - `/` allows search, `/123` will go to instances of "123".
@@ -142,11 +154,11 @@ $ nano myfile.txt
 
 Compression and de-compression are regular activities associated with large text data files, so get comfortable with it. `gzip` is a command for compressing and decompressing files. 
 
-The compressed .gz file can be easily decompressed.
+Compressed .gz files can be easily decompressed.
 
     $ gunzip sample_passerina.fastq.gz
 
-The below command will create the compressed file "sample_passerina.fastq".
+And compression is similarly easy. The below command will create the compressed file "sample_passerina.fastq".
 
     $ gzip sample_passerina.fastq
 
@@ -154,9 +166,9 @@ All .txt files in a directory can be compressed (or decompressed) using a wildca
 
     $ gzip *.txt 
 
-`tar` is a unix command with more flexibility for compressing directories. We will learn more about this later.
+`tar` is a unix command with more flexibility that is commonly used for compressing directories (`gzip` and `gunzip` work with files NOT directories). We will learn more about `tar` later.
 
-`*` will make your life easier, and you will learn to use it in many contexts. Here is another simple example for now, which would copy all of the files starting with BS_1287 and ending in fastq.gz to a specified directory
+`*` will make your life easier, and you will learn to use it in many contexts. `*` is short for wildcard, meaning it matches everything. So, `ls *.txt` would list all files that start with anything and end with `*txt` in the directory this command was executed from. Here is another simple example for now, which would copy all of the files starting with BS_1287 and ending in fastq.gz to a specified directory
 
     $ cp BS_1287*fastq.gz data_for_BS1287/
 
@@ -166,7 +178,7 @@ All .txt files in a directory can be compressed (or decompressed) using a wildca
 
     $ cat passerina.fastq
 
-That doesn't seem very useful in most cases. Instead, we can redirect the output of any Unix command to a file simply by using redirection. Here are some simple examples.
+That doesn't seem very useful in most cases. Instead, we can redirect the output of any Unix command to a file simply by using redirection with `>`. Here are some simple examples.
 
 The below command will concatenate the data from all files in a directory ending in data.txt into one file.
 
@@ -185,17 +197,22 @@ The use of `grep` below will send all lines containing a match to "BS_1287" to a
     $ grep "BS_1287" data_all_inds.txt > data_for_ind_BS1287.txt
 
 ## 6. Basic process monitoring 
+
+On linux systems, it is often important or necessary to have a look at what the system is doing - to get an idea of how many jobs or processes are running and who is running them. It is also a useful way to recognize jobs you have started from the terminal that need to be stopped or `killed`.
+
 *This is a simple start, we will revisit next week*
 
-`top` will display information on processes running on the machine you are logged into. Try it, read the output carefully. Doesnt matter what directory you call it from.
+`top` will display information on processes running on the machine you are logged into. Try it, read the output. Doesn't matter what directory you call it from. As with `less`, type `q` to exit the system view.
 
     $ top
 
-`ps` will show your active process ids. Try it.
+`top` doesnt have the prettiest or most obviously searchable output. `htop` is an upgrade that you may or may not have on your system. If you downloaded `oh my zsh`, you should have it. In the coming weeks, we will learn how to efficiently install whatever you want from the command line. In the meantime, if you dont have `htop`, you can grab using brew, following basic guide to package installation below.
 
-    $ ps aux | grep tparchman
+`ps` will show your active process ids. Below I am using `ps aux`, piping (with `|` ) the output into `grep` and using my username as the match for `grep`. Try it with your username.
 
-If you have mutliple processes running, and want to kill one, use `kill` followed by the process ID, which you can locate with `top` or `ps`
+    $ ps aux | grep thomasparchman
+
+If you have mutliple processes running, and want to kill one, use `kill` followed by the process ID, which you can locate with `top`, `htop` or `ps`
 
     $ kill 9031
 
