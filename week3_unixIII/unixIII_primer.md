@@ -18,6 +18,10 @@
 
     $ top
 
+`htop` will display information in a more readable in interactive format
+
+    $ htop
+
 `ps aux` (-a -u -x) will show all active processes. 
 
     $ ps aux
@@ -30,13 +34,28 @@ If you have mutliple processes running, and want to kill one, use `kill` followe
 
     $ kill 9031
 
-### Stopping jobs, running jobs in the background
+### Running jobs in the background
 
 If you have a job running in the shell that is not doing what you want, you can kill from the terminal with "ctrl c". You can also temporarily kill with "ctrl z", and then restart it in the background with `bg` typed at the prompt with no additional arguments necessary. Try this out, it will be useful in the future.
 
 If you are calling a command that is going to take some time, and you dont want it to occupy the shell you are working in, you can send it to the background with `&`. Once a job is running in the background, the job will continue once you close the terminal session or exit your connection to a remote server
 
     $ cat *fastq > allgenomefiles.fastq &
+
+Especially useful if you are working on a remote server and want to disconnect, `nohup`, short for no hang up is a Linux command that keeps processes running even after exiting the terminal. Nohup prevents the processes or jobs from receiving the SIGHUP (Signal Hang UP) signal, which is sent to a process upon closing or exiting the terminal. 
+
+To use `nohup`:
+
+    $ nohup <command> <argument>
+
+To use nohup with something that you want to put in the background:
+
+    $ nohup ping google.com &
+
+Note, if you try the above, you machine will `ping` google.com repeatedly. To look the job up, and then kill, see below. Note that `pgrep` is an alternative way to look up some types of jobs that returns only the process number. Thus, it gives less information than `ps aux`, but is more streamlined and simple.  `ps aux` returns the full command line of each process, while `pgrep` only looks at the names of the executables.
+
+    $ pgrep -a ping
+    $ kill 20397
 
 ## Practice running a program, running it in the background, and killing it ( from last weeks assignment)
 
@@ -50,10 +69,12 @@ Now, increase the number of random numbers until you get to a number of replicat
 
 The ampersand (&) will cause the job to run in the background, you will have the normal prompt back in your terminal window, and closing it will not affect the job.  
 
-You can use `top` or `ps` to identify the process number of the `jot` job in oder to kill it. You could more efficiently pipe the output from `ps aux` into a grep search for `jot` to return the PID of the job running in the background:
+You can use `top` or `ps` or `pgrep` to identify the process number of the `jot` job in oder to kill it. You could more efficiently pipe the output from `ps aux` into a grep search for `jot` to return the PID of the job running in the background:
 
     $ ps aux | grep jot
+OR
 
+    $ pgrep -a jot
 After you identify the job id (e.g., 77654), you can kill it:
 
     $ kill 77564
@@ -80,6 +101,7 @@ The below command will remove, instantly without second chances, forever, every 
     $ rm -rf *txt
 <p>&nbsp;</p>
 
+**NOTE**: The above is the most dangerous Linux command. Think twice, and proceed with caution. Not for playing games.
 
 ## 3. Copying and mirroring directories within and among Unix systems: `rsync`
 
@@ -100,6 +122,11 @@ A couple of minor details control the placement of directories and their content
 
     $ rsync -av --delete source_directory/ destination_directory/
 
+As `rsync` is the most commonly used command to transfer files and directories around machines, and between machines and remote servers, there are lots of helpful tutorials out there. Below are a few
+
+- [tecmint rsync tutorial](https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/)
+
+- [linuxize rsync tutorial](https://linuxize.com/post/how-to-use-rsync-for-local-and-remote-data-transfer-and-synchronization/)
 <p>&nbsp;</p>
 
 ## 4. Permissions and file modes
@@ -132,7 +159,7 @@ The `chmod` command is used to alter permissions. The command can be controlled 
 
 | Operator | Action/level |
 |----------|--------|
-|  +        | user/owner     |
+|  +        | Add     |
 |  -       | Remove  |
 |  =       | sets permission|
 |  r        | read    |
@@ -170,6 +197,20 @@ This script can then be executed from the currently directory:
 Pipes, called with the `|`, are used to send stdout from a command directly as input into another. Lets say you have DNA sequence data from a large number of individuals, all in separate .fastq files, in a project directory. To be sure of your sample size, you want to count the number of files in that directory. `ls` normally sends directory content, one line at a time, to stdout. Here we are piping that output directly into `wc -l` which will count the number of lines, which will represent the number of files.
 
     $ ls | wc -l
+
+Here are some examples from the files you played with last week under `GitHub/F23_BIOL792/week2_UnixII`:
+
+Counting the number of records in yeast_genome.gff that are on chrI (chromosome 1):
+
+    $ grep "chrI" yeast_genome.gff | wc -l
+
+The below commands extract the third field (which describes genomic feature), then sorts the output, then prints to STDOUT the unique items in the sorted list.
+
+    $ cut -f 3 yeast_genome.gff | sort | uniq
+
+The below command is useful for counting the number of active processes a given user has on a Linux system.
+
+    $ ps aux | grep parchman | wc -l
 
 Pipes are obviously useful to send output from one Unix command to another, yet the above examples only use a single `|`. In fact, many bioinformatic "pipelines" are actually built from strings on unix commands piped into one another. The example below does something real and useful:
 
