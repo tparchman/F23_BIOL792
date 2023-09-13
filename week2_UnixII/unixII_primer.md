@@ -226,7 +226,7 @@ This is a bit extra for what we are doing this week, but I thought I would add i
 `homebrew` manages and installs packages on Mac OS Unix. 
 To install brew (homebrew):
 
-    $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 `brew` is pretty easy to use. To look at a list of commands and their uses:
 
