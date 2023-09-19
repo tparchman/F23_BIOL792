@@ -114,7 +114,7 @@ Or, this could be executed more simply with:
 
 This will produce a file "u_grouse_barcodes.csv", which should have unix line endings.
 
-## using multiple arguments and loops in bash scripts in order to process many files at once
+## Using multiple arguments and loops in bash scripts in order to process many files at once
 
 The main reason we create scripts is to allow us to easily perform the same exact tasks without having to write new code. These scripts are most useful when you want to perform the same commands on multiple files all at once. For example, if you wanted to replace all instances of an underscore in several files with a comma and save the output as new files, you could either 1) open each file individually and use a find and replace tool; 2) write a simple unix command for each separate file; or 3) write one script that will find and replace for any number of files. While it might not seem like the third option would really save you that much time, just imagine if you wanted to do this for 1,000 different files? 
 
@@ -149,6 +149,8 @@ Because we want our script to be able to handle any number of input files, we ne
 
 You'll see that instead of specifying a specific file for the first command in each `Unix` pipe, you are instead specifying `$bc`, which is the current file name that you are currently working on in the loop. Also, instead of being able to redirect the output using `>`, you instead must use `&>` to redirect the standard output to a new file. Finally, you might be wondering why `$bc` is listed as part of the output file names. Look at the names of your new files to see what this syntax is doing. What are the `grep` commands accomplishing?
 
+## Potentially useful resources to get started on bash scripting
+
 
 ## 6. Package installation and management on Mac Unix (`brew`) and Ubuntu Linux (`apt`)
 <p>&nbsp;</p>
@@ -158,7 +160,7 @@ You'll see that instead of specifying a specific file for the first command in e
 `homebrew` manages and installs packages on Mac OS Unix. 
 To install brew (homebrew):
 
-    $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 `brew` is pretty easy to use. To look at a list of commands and their uses:
 

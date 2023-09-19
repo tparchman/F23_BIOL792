@@ -4,8 +4,8 @@
 
 
 for myfile in $@; do
-echo $myfile:
-head -n5 $myfile
+echo $myfile: 
+head -n5 $myfile 
 done
 
 
