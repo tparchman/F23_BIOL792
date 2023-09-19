@@ -59,7 +59,21 @@ Equivalently (using `>` instead of `cat` and `|`):
    
 ## 3. substituting matches with `sed`
 
-`sed` is an efficient tool for manipulating large numbers of text files using single lines of code, when the goal is replacing one pattern of text with another. `sed` is flexible with regular expressions, and can locate specific or highly fuzzy matches. Let's explore this command with `grouse_bams.txt`, which contains a simple list of file names from a DNA sequencing project. You'll notice that information is separated by both underscores and periods. The important information in this file lies between the first underscore and the first period (e.g., `CO_HC_20`), as this code represents the individual's geographic region (e.g., `CO`), the individual's population (e.g., `HC`), and the individual's  id number (e.g., `20`). Let's first use `sed` to delete the extra text that we might not care about. Since we need to remove different parts (`aln_` and `.sorted.bam`), we can to use a `|` in our command. Also, since periods are special characters in this case, we will need to escape them using a `\` in our substitution statement.
+`sed` (**S**tream **ED**itor) is an efficient tool for manipulating large numbers of text files using single lines of code, when the goal is replacing one pattern of text with another. `sed` is flexible with regular expressions, and can locate specific or highly fuzzy matches. 
+
+Lets start by looking at the simplest use of `sed` to replace one pattern with another, using the file `steinbeck.txt`, which has a three paragraph of John Steinbeck's work and writing.
+
+We could replace instances of "he" with "John" using:
+
+    $ sed "s/he/John/" steinbeck.txt
+
+The above will send to STDOUT the text, with the first instance of "he" replaced with John. To replace all instances we would use "g" for global, at the end of the regular expression:
+
+    $ sed "s/he/John/g" steinbeck.txt
+
+A few things to notice here is that wherever "he" occurs, it will be replaced. So, "The" is altered to "TJohn", where is altered to "wJohnre", etc.
+
+Let's explore this command some more with `grouse_bams.txt`, which contains a simple list of file names from a DNA sequencing project. You'll notice that information is separated by both underscores and periods. The important information in this file lies between the first underscore and the first period (e.g., `CO_HC_20`), as this code represents the individual's geographic region (e.g., `CO`), the individual's population (e.g., `HC`), and the individual's  id number (e.g., `20`). Let's first use `sed` to delete the extra text that we might not care about. Since we need to remove different parts (`aln_` and `.sorted.bam`), we can to use a `|` in our command. Also, since periods are special characters in this case, we will need to escape them using a `\` in our substitution statement.
 
     $ sed "s/aln_//" grouse_bams.txt | sed "s/\.sorted\.bam//" > grouse_ids.txt
 
@@ -70,6 +84,16 @@ Equivalently (using `>` instead of `cat` and `|`):
 You'll notice that only one underscore was replaced. This is because `sed` only replaces the first instance of the match on each line unless you tell it otherwise. In order for you to find and replace all matches on a line, you will need to add the `g` global flag:
 
     $ sed "s/aln_//" grouse_bams.txt | sed "s/\.sorted\.bam//" | sed "s/_/,/g" 
+
+The above examples pipe full `sed` commands into each other. A quicker way to execute multiple `sed` commands is to use the `-e` option:
+
+    $ sed -e "s/aln_//" -e "s/\.sorted\.bam//" -e "s/_/,/g" grouse_bams.txt
+
+## Extra resources for learning sed
+
+- [geeks for geeks sed tutorial](https://www.geeksforgeeks.org/sed-command-in-linux-unix-with-examples/)
+
+- [grymoire sed tutorial](https://www.grymoire.com/Unix/Sed.html#uh-13)
 
 ## 4. `Awk`: a text engine with a ton of flexibility
 `awk` isn't just another `Unix` command - it is essentially a language and has books written about it. Like `sed`, `awk` can be used to solve a wide variety advanced text manipulation problems. Haddock and Dunn do not go into detail about `awk`, but we will briefly introduce it to you here by showing you some examples using the `grouse_ids.txt` file that you generated above. `awk` allows you to print out a subset of a file based on specific criteria found in your command (this info is placed within curly brackets). `NOTE`: we won't be redirecting the output of any of the commands below into a new file for simplicity, but you could easily do this if you wanted.
@@ -150,6 +174,13 @@ Because we want our script to be able to handle any number of input files, we ne
 You'll see that instead of specifying a specific file for the first command in each `Unix` pipe, you are instead specifying `$bc`, which is the current file name that you are currently working on in the loop. Also, instead of being able to redirect the output using `>`, you instead must use `&>` to redirect the standard output to a new file. Finally, you might be wondering why `$bc` is listed as part of the output file names. Look at the names of your new files to see what this syntax is doing. What are the `grep` commands accomplishing?
 
 ## Potentially useful resources to get started on bash scripting
+
+
+- [free code camp tutorial](https://www.freecodecamp.org/news/bash-scripting-tutorial-linux-shell-script-and-command-line-for-beginners/)
+
+- [hostinger](https://www.hostinger.com/tutorials/bash-scripting-tutorial)
+
+- [geeks for geeks](https://www.geeksforgeeks.org/bash-scripting-introduction-to-bash-and-bash-scripting/)
 
 
 ## 6. Package installation and management on Mac Unix (`brew`) and Ubuntu Linux (`apt`)
