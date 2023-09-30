@@ -173,7 +173,6 @@ For the example syntax below, `str` represents a generic string variable name, t
     print ("Use of str.alnum: ", Seq_one_alphanum_test)
 
 
-<p>&nbsp;</p>
 
 ## 3B. Basic mathematical operations
 Basic mathematical operations work mostly as expected, and can be usefully tested using interactive prompt from the terminal or the Ipy terminal prompt (see below).  
@@ -190,7 +189,6 @@ Basic mathematical operations work mostly as expected, and can be usefully teste
 | ** |   Power |
 
 
-<p>&nbsp;</p>
 
 Comparison operators, such as those listed below, can return boolean values in some statements (True or False; 1 or 0). You will find yourself making regular use of these in conditional statements, such as `if`, `if else`, etc.
 
