@@ -354,6 +354,11 @@ After executing the script, you will be prompted at the command line with "Enter
 
 [Python for Biologists](https://pythonforbiologists.com/introduction)
 
+[Learn Python Interactive - has built in interpretter](https://www.learnpython.org/)
+
+[Python guru - excellent, also has built in interpretter](https://thepythonguru.com/)
+
+
 ### Chapter 8 differences between python2 and python3 (syntax changes that will require slight modification of book examples)
 
 1. print statements in python3 should use (). 
