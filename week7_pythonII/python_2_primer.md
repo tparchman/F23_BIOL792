@@ -80,6 +80,12 @@ Another value can be added to specify interval between integers.
     Breeds.append('curlycoat') #adds 'curlycoat')
     print(Breeds)
 
+`extend()` is used to add elements at the end of the list like append, but `extend()` allows the addition of multiple elements at once.
+
+    numList = [1,2,3]
+    numList.extend([4, 5, 6]) 
+    print(numList)
+
 Joining two lists together is very simple, just use `+`
 
     List1 = ["a", "b" , "c"]
@@ -107,6 +113,17 @@ Reversing strings is a bit less straight forward. The text below looks funny, yo
 
     Seq='ATCGGGGGG'
     Rev = Seq[::-1]
+
+`len()`returns the length of a list
+
+    numList = [1,2,3,4,5,6,7,8,9]   
+    print(len(numList))
+
+`min()`returns the minimum value in the list, `max` returns the maximum value in a list. You can use min operation successfully only if the list is homogenous. 
+
+    numList = [1,2,3,4,5,6,7,8,9]   
+    print(min(numList))
+    print(max(numList))
 
 # 2. Conditional statements: `if`, `else`, `elif`
 
@@ -254,3 +271,11 @@ Converting quarts to liters:
 
     Qvol = [.5, .3, .31, .45, 1.6, 1.5, 1.8]
     Lvol = [q * .946353 for q in Qvol] 
+
+# 5. Lists vs. tuples
+
+Both lists and tuples are used for one dimensional collections of scalars or other data structure. While lists are much more commonly used, tuples may be preferable in some cases.  The most important difference between lists and tuples is that tuples are immutable and can not be modified in terms of indeces or membership. They are designated with slightly different notation, as below.
+
+    Ftemps=[62, 55, 73, 77, 80, 32, 27] # list
+    Ftemps_tuple=(62, 55, 73, 77, 80, 32, 27) # tuple, not parentheses
+ 
