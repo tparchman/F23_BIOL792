@@ -6,13 +6,11 @@
 - introduction to using libraries (`sys`) and (`re`)
 - Haddock and Dunn chapters 9 and 10, bit of 11 (`sys.argv`)
 - updated document that has corrections for python3 where necessary (PythonLesson2_Chapter9.pdf, PythonLesson3_Chapter10.docx)
-<p>&nbsp;</p>
 
 
 # Working with Files
 
 For almost every task you attempt with Python, you will need to 1) open and read data from existing text files; and 2) write the products of your code to new text files. Sometimes you will work with one file at a time, while other tasks will involve reading and writing to multiple files and at some times large numbers of files. As hopefully you will see here, all of the above is fairly straightforward with Python. 
-<p>&nbsp;</p>
 
 ## I. Input
 
@@ -21,11 +19,8 @@ Input involves several steps
 **A.** assigning the name of the file to a variable (based on its location), and opening a connection to the file (creating a file object with `open()`)
 
 **B.** reading the contents of the file with `.read` or using a `for` loop, using one of several available methods in Python(detailed below)
-<p>&nbsp;</p>
 
 ### A. Establishing file handles: `open()`can be used to open a connection (also could be called a file handle) to files stored in directories on your computer. 
-
-<p>&nbsp;</p>
 
 ### This can be done by 'hardcoding' the name of a file or files into your code:
 
@@ -40,7 +35,6 @@ Of course, you can also use an absolute path:
 
 ### Perhaps more usefully, file names can be processed from command line arguments. This is often advantageous in that the same script can be used to process different files or different sets of files without. Let's walk through how to do this below, while also giving you a preview of using python libraries/modules.
 
-<p>&nbsp;</p>
 
 A strength of python is the enormous number of libraries/packages that exist to facilitate specific tasks. We will soon start to learn more about more libraries in Python; here we will introduce a commonly used library and the process of importing libraries. Importing a library into your python scrip is done with a simple line (below, import function, followed by name of library):
 
@@ -140,7 +134,7 @@ Below are three lines of code to 1. create a file name, 2. make a file object, o
 
     input_file= "~/python_practice/DNA_seq_allosaurus.fasta"
 
-2). Makin a file object, or connection, from your code to that file:
+2). Making a file object, or connection, from your code to that file:
 
     IN = open(input_file, 'r')
 
@@ -190,7 +184,7 @@ It may take some experience before you realize that closing files  when you are 
 
 The code below gives an example of looping through every line in a file.
 
-    Infile=open(sys.argv[1], 'r')
+    InFile=open("genenames.txt", 'r')
 	for Line in InFile:
 		Line = Line.strip('\n') #removing line ending
 		
