@@ -13,7 +13,6 @@
 - [regular expression tester](https://regex101.com).
 - [python for biologists regular expression lesson](https://pythonforbiologists.com/tutorial/regex.html)
 - [pythonguru regular expression tutorial](https://thepythonguru.com/python-regular-expression/)
-<p>&nbsp;</p>
 
 
 ## Introduction to regular expressions
@@ -82,6 +81,7 @@ Match objects have multiple elements, which can be individually extracted:
     print(Seqmatch.start())  # prints start position of match
     print(Seqmatch.group()) # prints matched string group
     print(Seqmatch.end()) # prints end position of match in string
+
 Note that above, `re.search` only stores one ATC, even though there are 3 in Seq. Thats because `re.search` only makes one match. `re.findall` and `re.finditer` to find, track, and store multiple matches. More on these below.
 
 ### Using `r""` to search raw text only.
@@ -92,13 +92,12 @@ Regular expression patterns preceded by `r` will search only raw text, and not s
     Seqmatch=re.search(r'ATC', Seq)
     print(Seqmatch)
 
-It will matter in strings that have special characters, such as '\n', which is a unix line ending. When preceded in a match statement by 'r', backslashes are not treated differently than any other charater. So r"\n" is a two-character string containing '\' and 'n', while "\n" is a one-character string containing a newline. Usually patterns will be expressed in Python code using this raw string notation, so we will mostly use in what follows.
+It will matter in strings that have special characters, such as '\n', which is a linux line ending. When preceded in a match statement by 'r', backslashes are not treated differently than any other charater. So r"\n" is a two-character string containing '\' and 'n', while "\n" is a one-character string containing a newline. Usually patterns will be expressed in Python code using this raw string notation, so we will mostly use in what follows.
 
 ## Basic syntax for regular expression matching
 
 Syntax for regular expressions is mostly consistent across many languages, including Unix, Perl, and Python. The regular expression cheat sheet posted with the course materials will be helpful here; I suggest keeping that or similar cheat sheet close by. The table below illustrates some of the most commonly used expressions
 
-<p>&nbsp;</p>
 
 | Expression | Meaning |
 |---------- | ---------- |
@@ -112,14 +111,13 @@ Syntax for regular expressions is mostly consistent across many languages, inclu
 |*  | anything|
 |.| any non-whitespace character|
 |^ | beginning of string anchor |
-|$ | end of string anchor  |
-|\d{3,}| 3 or more consecutive digits|
+|\$ | end of string anchor|
+|\d\{3,\} | 3 or more consecutive digits|
 |[a-z]| any lower case letter|
 |[A-Z]| any upper case letter|
 |[^ATCG]| any character other than A, T, C, G|
 |\\$| matches "$", special characters 'escaped' with `\`|
 |\\@| matches "@", special characters 'escaped' with `\`|
-<p>&nbsp;</p>
 
 ## A note on special characters
 
@@ -130,7 +128,6 @@ So in the string below, specifying search with "\\@" will produce a match, while
     Seq = '@ATCGGGGGGATCGGGATC'
     re.search("\@", Seq)   # returns a match
     re.search("@", Seq)   # does not return a match
-<p>&nbsp;</p>
 
 | Expression | Translation |
 |---------- | ---------- |
